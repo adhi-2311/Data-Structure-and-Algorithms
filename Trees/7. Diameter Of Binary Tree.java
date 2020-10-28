@@ -1,6 +1,11 @@
 /*
 Given a binary tree, you need to compute the length of the diameter of the tree.
 The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+The diameter of a tree T is the largest of the following quantities:
+1. the diameter of T’s left subtree.
+2. the diameter of T’s right subtree. 
+3. the longest path between leaves that goes through the root of T (this can be computed from the heights of the subtrees of T) 
+
 https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
 */
 
