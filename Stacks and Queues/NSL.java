@@ -1,7 +1,7 @@
 // Next smaller element to left in an array
 
 class Solution{
-    public static long[] nextLargerElement(int[] arr, int n) 
+    public static int[] nextLargerElement(int[] arr, int n) 
     {
       Stack<Integer> st=new Stack<Integer>();
       int ans[]=new int[n];
@@ -20,6 +20,8 @@ class Solution{
 
         st.push(arr[i]);
       }
+        
+       return ans;
     }
 }
 /*
