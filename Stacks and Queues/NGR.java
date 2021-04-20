@@ -1,3 +1,5 @@
+//https://www.geeksforgeeks.org/next-greater-element/
+
 class Solution{
     public static long[] nextLargerElement(long[] arr, int n) 
     { 
