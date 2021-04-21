@@ -24,10 +24,7 @@ public class Graph
 
 	void bfs(int source)
 	{
-      vis=new int[v];
-      for(int i=0;i<v;i++)
-      	vis[i]=0;
-
+     
       Queue<Integer> queue = new LinkedList<>();
       queue.add(source);
       vis[source]=1;
