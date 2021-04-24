@@ -1,5 +1,5 @@
 /*
-For disconnected graph, we can traverse all the vertices in it, check if its already visited, if unvisited we can call dfs/bfs on it
+For disconnected undirected graph, we can traverse all the vertices in it, check if its already visited, if unvisited we can call dfs/bfs on it
 */
 
 import java.util.*;
@@ -29,6 +29,7 @@ public class Graph
 	void addEdge(int a,int b)
 	{
 		adj[a].add(b);
+                adj[b].add(a);
 	}
   
   void dfs(int source)
@@ -78,7 +79,7 @@ public class Graph
         g.addEdge(2, 3); 
         g.addEdge(1, 4); 
         g.addEdge(5, 6); 
-        g.addEdge(3, 4);
+        
 
         System.out.println("BFS:");
     
@@ -116,8 +117,8 @@ INPUT GRAPH:
 OUTPUT:
 
 BFS:
-0 2 3 4 1 5 6
+0 2 3 1 4 5 6
 DFS:
-0 2 3 4 1 5 6
+0 2 3 1 4 5 6
 
 */
