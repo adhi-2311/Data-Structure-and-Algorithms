@@ -23,7 +23,7 @@ class Solution
        
         //base case
         dp[0]=1;
-        //for each of m coins we can either include it or exclude it
+        
         for(int i=0;i<m;i++)
         {
             for(int j=1;j<=n;j++)
