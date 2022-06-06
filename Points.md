@@ -13,3 +13,4 @@ System.out.println(Collections.binarySearch(list, 22)); // 5
 System.out.println(Collections.binarySearch(list, 5));  // 0
  ```
 
+- [Java Collections Time Complexity](https://www.baeldung.com/java-collections-complexity)
