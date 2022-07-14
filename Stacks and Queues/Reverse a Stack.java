@@ -1,6 +1,8 @@
 import java.util.Stack;
 
 public class Solution {
+	
+// using RECURSION   -> O(N2) TIME AND O(N) SPACE
     public static void insertBottom(Stack<Integer> st,int x){
         if(st.isEmpty())
             st.push(x);
@@ -21,3 +23,6 @@ public class Solution {
 	}
 
 }
+// O(N) APPROACH AND O(1) SPACE
+// IDEA: INTERNALLY REPRESENT STACK AS LINKED LIST
+// https://www.geeksforgeeks.org/reverse-stack-without-using-extra-space/
