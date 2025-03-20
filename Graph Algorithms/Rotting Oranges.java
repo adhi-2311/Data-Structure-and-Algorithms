@@ -19,26 +19,22 @@ class Solution {
     int m = grid.length;
     int n = grid[0].length;
 
-    if (m == 1 & n == 1 && grid[0][0] == 1)
-      return -1;
-
-    boolean isFreshOrange = false, isRottenOrange = false;
-    int srcX = 0, srcY = 0;
+    boolean isFreshOrange = false;
+    
     Queue<Pair> q = new LinkedList<>();
+    
     for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         if (grid[i][j] == 1)
           isFreshOrange = true;
 
         if (grid[i][j] == 2) {
-          srcX = i;
-          srcY = j;
           q.add(new Pair(i, j));
         }
       }
     }
 
-    if (!isFreshOrange)
+    if (!isFreshOrange)// [[0,2]]
       return 0;
 
     int minTime = 0;
