@@ -1,95 +1,75 @@
 class Solution {
-    static class Pair{
-        int start,end;
-        Pair(int i,int j)
-        {
-            start=i;
-            end=j;
-        }
+  class Pair {
+    int x;
+    int y;
+
+    Pair(int _x, int _y) {
+      x = _x;
+      y = _y;
     }
-    public static int bfs(int arr[][],Queue<Pair> q)
-    {
-         
-        int r=arr.length;
-        int c=arr[0].length;
-        int unit=0;
-        while(!q.isEmpty())
-        {
-            
-            int l=q.size();
-            while(l-->0)
-            {
-                
-                Pair child=q.poll();
-                int x=child.start;
-                int y=child.end;
-                
-                //up
-                if(x>0 && arr[x-1][y]==1)
-                {
-                    q.add(new Pair(x-1,y));
-                    arr[x-1][y]=0;
-                }
-                if(x<r-1 && arr[x+1][y]==1)
-                {
-                    q.add(new Pair(x+1,y));
-                    arr[x+1][y]=0;
-                }
-                if(y>0 && arr[x][y-1]==1)
-                {
-                    q.add(new Pair(x,y-1));
-                    arr[x][y-1]=0;
-                }
-                 if(y<c-1 && arr[x][y+1]==1)
-                {
-                    q.add(new Pair(x,y+1));
-                    arr[x][y+1]=0;
-                }
-                
-                
-            }
-            unit++;
-            
+  }
+
+  public boolean isValid(int x, int y, int grid[][]) {
+    if (x >= 0 && y >= 0 && x < grid.length && y < grid[0].length && grid[x][y] == 1)
+      return true;
+    return false;
+  }
+
+  public int orangesRotting(int[][] grid) {
+    int m = grid.length;
+    int n = grid[0].length;
+
+    if (m == 1 & n == 1 && grid[0][0] == 1)
+      return -1;
+
+    boolean isFreshOrange = false, isRottenOrange = false;
+    int srcX = 0, srcY = 0;
+    Queue<Pair> q = new LinkedList<>();
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        if (grid[i][j] == 1)
+          isFreshOrange = true;
+
+        if (grid[i][j] == 2) {
+          srcX = i;
+          srcY = j;
+          q.add(new Pair(i, j));
         }
-        
-        return unit-1;
+      }
     }
-   
-    public int orangesRotting(int[][] arr) {
-         Queue<Pair> q=new LinkedList<>();
-        int one=0;
-        for(int i=0;i<arr.length;i++)
-        {
-            for(int j=0;j<arr[0].length;j++)
-            {
-                if(arr[i][j]==2)
-                {
-                    Pair src=new Pair(i,j);
-                    q.add(src);
-                    arr[i][j]=0;
-                    
-                }
-                else if(arr[i][j]==1)
-                    one++;
-            }
+
+    if (!isFreshOrange)
+      return 0;
+
+    int minTime = 0;
+    while (!q.isEmpty()) {
+      int qsize = q.size();
+      while (qsize-- > 0) {
+        Pair top = q.poll();
+        int topX = top.x;
+        int topY = top.y;
+
+        int dir[][] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+
+        for (int d[] : dir) {
+          if (isValid(topX + d[0], topY + d[1], grid)) {
+            q.add(new Pair(topX + d[0], topY + d[1]));
+            grid[topX + d[0]][topY + d[1]] = 2;
+          }
         }
-        if(q.isEmpty()==true)
-        {
-            if(one==0)
-                return 0;
-            else
-                return -1;
-        }
-        int ans=bfs(arr,q);
-        for(int i=0;i<arr.length;i++)
-        {
-            for(int j=0;j<arr[0].length;j++)
-            {
-                if(arr[i][j]==1)
-                return -1;
-            }
-            
-        }
-        return ans;
+
+      }
+      minTime++;
     }
+
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        if (grid[i][j] == 1)
+          return -1;
+      }
+    }
+
+    return minTime - 1;
+
+  }
 }
